@@ -1,19 +1,30 @@
 import type { Plugin } from "@opencode-ai/plugin"
+import { handleUsageCommand } from "./lib/usage-handler"
 
-export const TestPlugin: Plugin = async ({client, $}) => {
+export const TestPlugin: Plugin = async ({ client }) => {
     return {
-        "command.execute.before": async (input, _output) => {
-            // if (input.command === "usage") {
-                console.log("Executing usage command")
-            // }
-        },
         config: async (opencodeConfig) => {
             opencodeConfig.command ??= {}
             opencodeConfig.command["usage"] = {
                 template: "",
-                description: "Show available DCP commands",
+                description: "Shows usage for Copilot, Claude Code and Z.ai",
             }
-        }
+        },
+        "command.execute.before": async (input, output) => {
+            if (input.command === "usage") {
+                try {
+                    await handleUsageCommand({
+                        client,
+                        sessionID: input.sessionID,
+                        params: output,
+                    })
+                } catch (err) {
+                    console.error(err instanceof Error ? err.message : String(err))
+                }
+
+                throw new Error("__USAGE_COMMAND_HANDLED__")
+            }
+        },
     }
 }
 
