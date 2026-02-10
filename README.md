@@ -69,7 +69,7 @@ npm install
 #### Option B: Install via npm (coming soon)
 
 ```bash
-npm install -g opencode-usage
+npm install -g @toninho09/opencode-usage@latest
 ```
 
 Then add to your `opencode.json` config file:
