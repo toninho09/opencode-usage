@@ -41,3 +41,26 @@ export function formatFriendlyDate(dateInput: string | number | Date): string {
   
   return `${year}-${month}-${day} ${hours}:${minutes} ${timezone}`;
 }
+
+/**
+ * Creates a centered box header with title
+ * Width is the inner content width (excludes the border characters)
+ * Example with width=80:
+ * ╔══════════════════════════════════════════════════════════════════════════════════╗
+ * ║                                  MY TITLE                                       ║
+ * ╚══════════════════════════════════════════════════════════════════════════════════╝
+ */
+export function boxHeader(title: string, width: number = 80): string {
+  const topLine = "╔" + "═".repeat(width) + "╗";
+  const bottomLine = "╚" + "═".repeat(width) + "╝";
+  
+  // Center the title within the width
+  const padding = Math.max(0, width - title.length);
+  const leftPad = Math.floor(padding / 2);
+  const rightPad = padding - leftPad;
+  const centerTitle = " ".repeat(leftPad) + title + " ".repeat(rightPad);
+  
+  const middleLine = "║" + centerTitle + "║";
+  
+  return topLine + "\n" + middleLine + "\n" + bottomLine;
+}

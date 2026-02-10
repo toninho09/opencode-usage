@@ -8,7 +8,7 @@ const formatter = new ZaiFormatter();
 export const zaiProvider: UsageProvider = {
   name: "Z.ai Coding Plan",
   id: "zai",
-  description: "Monitoramento de uso do Z.ai Coding Plan",
+  description: "Z.ai Coding Plan usage monitoring",
 
   async getUsageData(): Promise<ProviderMessage | null> {
     try {
