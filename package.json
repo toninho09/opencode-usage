@@ -1,5 +1,5 @@
 {
-  "name": "opencode-test-plugin",
+  "name": "@toninho09/opencode-usage",
   "version": "1.0.0",
   "type": "module",
   "main": "index.ts",
