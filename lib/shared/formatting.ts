@@ -33,15 +33,16 @@ export function formatResetLine(
   label: string,
   resetDate: string | number | undefined,
   labelWidth: number = 15,
+  prefix: string = "",
 ): string {
   if (!resetDate) {
-    return `${label.padEnd(labelWidth)} N/A`;
+    return `${prefix}${label.padEnd(labelWidth)} N/A`;
   }
 
   const countdown = formatResetCountdown(resetDate);
   const friendlyDate = formatFriendlyDate(resetDate);
 
-  return `${label.padEnd(labelWidth)} ${countdown} (${friendlyDate})`;
+  return `${prefix}${label.padEnd(labelWidth)} ${countdown} (${friendlyDate})`;
 }
 
 /**

@@ -1,5 +1,5 @@
 import { formatResetLine, formatTokens, maskApiKey } from "../../shared/formatting";
-import { createUsedProgressBar } from "../../shared/utils";
+import { createUsedProgressBar, boxHeader } from "../../shared/utils";
 import type { ZaiUsageResponse, UsageLimitItem } from "./types";
 
 export class ZaiFormatter {
@@ -36,13 +36,11 @@ export class ZaiFormatter {
     const limits = data.data.limits;
 
     const maskedKey = maskApiKey(apiKey);
-    lines.push("╔════════════════════════════════════════╗");
-    lines.push("║       Z.AI CODING PLAN                 ║");
-    lines.push("╚════════════════════════════════════════╝");
-    lines.push(`Account:         ${maskedKey} (Z.AI Coding Plan)`);
+    lines.push(boxHeader("Z.AI CODING PLAN", 80));
+    lines.push(`  Account:         ${maskedKey} (Z.AI Coding Plan)`);
 
     if (!limits || limits.length === 0) {
-      lines.push("No quota data available");
+      lines.push("  No quota data available");
       return lines.join("\n");
     }
 
@@ -52,10 +50,10 @@ export class ZaiFormatter {
       const progressBar = createUsedProgressBar(percentUsed, 20);
       const usageDisplay = this.calculateUsageDisplay(tokensLimit);
 
-      lines.push(`Tokens:          ${progressBar} ${percentUsed}%${usageDisplay}`);
+      lines.push(`  Tokens:          ${progressBar} ${percentUsed}%${usageDisplay}`);
 
       if (tokensLimit.nextResetTime) {
-        lines.push(formatResetLine("5h Resets:", tokensLimit.nextResetTime, 16));
+        lines.push("  " + formatResetLine("5h Resets:", tokensLimit.nextResetTime, 15));
       }
     }
 
@@ -68,7 +66,7 @@ export class ZaiFormatter {
       const total = timeLimit.usage ?? (timeLimit.remaining ?? 0);
 
       lines.push(
-        `MCP Searches:    ${progressBar} ${percentUsed}% (${currentValue}/${total})`,
+        `  MCP Searches:    ${progressBar} ${percentUsed}% (${currentValue}/${total})`,
       );
     }
 

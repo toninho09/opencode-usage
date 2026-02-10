@@ -8,7 +8,7 @@ const formatter = new CopilotFormatter();
 export const copilotProvider: UsageProvider = {
   name: "GitHub Copilot",
   id: "copilot",
-  description: "Monitoramento de uso do GitHub Copilot",
+  description: "GitHub Copilot usage monitoring",
 
   async getUsageData(): Promise<ProviderMessage | null> {
     try {

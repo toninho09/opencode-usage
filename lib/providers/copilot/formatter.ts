@@ -1,5 +1,5 @@
 import { formatResetLine } from "../../shared/formatting";
-import { createUsedProgressBar } from "../../shared/utils";
+import { createUsedProgressBar, boxHeader } from "../../shared/utils";
 import type { CopilotUsageResponse, QuotaDetail } from "./types";
 
 export class CopilotFormatter {
@@ -12,7 +12,7 @@ export class CopilotFormatter {
     }
 
     if (quota.unlimited) {
-      return `${name.padEnd(16)} Unlimited`;
+      return `  ${name.padEnd(16)} Unlimited`;
     }
 
     const total = quota.entitlement;
@@ -20,7 +20,7 @@ export class CopilotFormatter {
     const percentUsed = Math.round((used / total) * 100);
     const progressBar = createUsedProgressBar(percentUsed, 20);
 
-    return `${name.padEnd(16)} ${progressBar} ${percentUsed}% (${used}/${total})`;
+    return `  ${name.padEnd(16)} ${progressBar} ${percentUsed}% (${used}/${total})`;
   }
 
   /**
@@ -29,10 +29,8 @@ export class CopilotFormatter {
   format(data: CopilotUsageResponse): string {
     const lines: string[] = [];
 
-    lines.push("╔════════════════════════════════════════╗");
-    lines.push("║         GITHUB COPILOT                 ║");
-    lines.push("╚════════════════════════════════════════╝");
-    lines.push(`Plan:            ${data.copilot_plan}`);
+    lines.push(boxHeader("GITHUB COPILOT", 80));
+    lines.push(`  Plan:            ${data.copilot_plan}`);
 
     const premium = data.quota_snapshots.premium_interactions;
     if (premium) {
@@ -58,7 +56,7 @@ export class CopilotFormatter {
       }
     }
 
-    lines.push(formatResetLine("Quota Resets:", data.quota_reset_date, 16));
+    lines.push(formatResetLine("Quota Resets:", data.quota_reset_date, 18));
 
     return lines.join("\n");
   }

@@ -8,7 +8,7 @@ const formatter = new ClaudeFormatter();
 export const claudeProvider: UsageProvider = {
   name: "Claude Code",
   id: "claude",
-  description: "Monitoramento de uso do Claude Code",
+  description: "Claude Code usage monitoring",
 
   async getUsageData(): Promise<ProviderMessage | null> {
     try {
