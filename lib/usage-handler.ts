@@ -1,4 +1,4 @@
-import { sendIgnoredMessage } from "./shared/notification";
+import { sendIgnoredMessage, showToast } from "./shared/notification";
 import { getCurrentSession, getAllSessions } from "./tracking/tracker";
 import { registry } from "./providers/registry";
 import { boxHeader } from "./shared/utils";
@@ -18,6 +18,8 @@ export async function handleUsageCommand(ctx: UsageContext): Promise<void> {
 
   try {
     let output = "";
+
+    await showToast(client, "Fetching usage metrics...", "info");
 
     // Fetch provider data (Copilot, Claude, Z.ai)
     const providers = registry.getAll();
@@ -72,8 +74,10 @@ export async function handleUsageCommand(ctx: UsageContext): Promise<void> {
     }
 
     await sendIgnoredMessage(client, sessionID, output);
+    await showToast(client, "Usage metrics updated successfully.", "success");
   } catch (error) {
     console.error("Error in handleUsageCommand:", error);
+    await showToast(client, "Failed to fetch usage metrics.", "error");
   }
 }
 

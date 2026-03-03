@@ -17,12 +17,14 @@ export interface AuthProvider {
   expires?: number;
   username?: string;
   key?: string;
+  accountId?: string;
 }
 
 export interface AuthConfig {
   "github-copilot"?: AuthProvider;
   "anthropic"?: AuthProvider;
   "zai-coding-plan"?: AuthProvider;
+  "openai"?: AuthProvider;
 }
 
 /**

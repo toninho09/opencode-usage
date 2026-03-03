@@ -15,3 +15,20 @@ export async function sendIgnoredMessage(
         console.error("Failed to send notification:", error.message)
     }
 }
+
+export async function showToast(
+    client: any,
+    message: string,
+    variant: "info" | "success" | "error" = "info",
+): Promise<void> {
+    try {
+        await client.tui?.showToast?.({
+            body: {
+                message,
+                variant,
+            },
+        })
+    } catch (error: any) {
+        console.error("Failed to show toast:", error.message)
+    }
+}

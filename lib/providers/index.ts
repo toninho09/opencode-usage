@@ -4,5 +4,6 @@
 export { copilotProvider } from "./copilot";
 export { claudeProvider } from "./claude";
 export { zaiProvider } from "./zai";
+export { codexProvider } from "./codex";
 export { registry, ProviderRegistry } from "./registry";
 export type { UsageProvider, ProviderMessage } from "./base";

@@ -2,6 +2,7 @@ import type { UsageProvider } from "./base";
 import { copilotProvider } from "./copilot";
 import { claudeProvider } from "./claude";
 import { zaiProvider } from "./zai";
+import { codexProvider } from "./codex";
 
 /**
  * Centralized registry of all usage providers
@@ -52,5 +53,6 @@ export const registry = new ProviderRegistry();
 registry.register(copilotProvider);
 registry.register(claudeProvider);
 registry.register(zaiProvider);
+registry.register(codexProvider);
 
 export default registry;
