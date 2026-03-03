@@ -1,6 +1,6 @@
 # OpenCode Usage Plugin
 
-Track your AI coding assistant usage in one place. This plugin shows both provider quota information and real-time token usage statistics for GitHub Copilot, Claude Code, and Z.ai.
+Track your AI coding assistant usage in one place. This plugin shows both provider quota information and real-time token usage statistics for GitHub Copilot, Claude Code, Z.ai, and GPT Codex.
 
 ## Table of Contents
 
@@ -24,6 +24,7 @@ Before installing this plugin, make sure you have:
   - GitHub Copilot account
   - Anthropic (Claude) API key
   - Z.ai account
+  - OpenAI account connected in OpenCode (`openai` entry in `auth.json`)
 
 ## Quick Start
 
@@ -154,7 +155,7 @@ Quota Resets:      18d 0h (2026-02-28 21:00 UTC-03:00)
 
 ## Features
 
-- ✅ **Provider quota monitoring**: Shows usage limits and remaining quota for Copilot, Claude, and Z.ai
+- ✅ **Provider quota and usage monitoring**: Shows usage limits/usage data for Copilot, Claude, Z.ai, and GPT Codex
 - ✅ **Real-time token tracking**: Automatically monitors token usage from all AI messages
 - ✅ **Provider/Model breakdown**: See usage grouped by AI provider and model
 - ✅ **Token type tracking**: Input, output, reasoning, cache read, and cache write tokens
